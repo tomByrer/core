@@ -1,10 +1,11 @@
 [![bundlephobia](https://img.shields.io/bundlephobia/minzip/@style-hooks/core?style=plastic)](https://bundlephobia.com/result?p=@style-hooks/core)
-[![codecov](https://codecov.io/gh/jaredLunde/style-hooks/branch/master/graph/badge.svg)](https://codecov.io/gh/jaredLunde/style-hooks)
+[![codecov](https://codecov.io/gh/style-hooks/core/branch/master/graph/badge.svg)](https://codecov.io/gh/style-hooks/core)
+[![Build Status](https://travis-ci.org/style-hooks/core.svg?branch=master)](https://travis-ci.org/style-hooks/core)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://jaredlunde.mit-license.org/)
 
 <p align=center>
   <br/>
-  <img src='https://raw.githubusercontent.com/jaredLunde/style-hooks/master/assets/logo%402x.png' width='320'/>
+  <img src='https://raw.githubusercontent.com/style-hooks/docs/master/assets/logo%402x.png' width='320'/>
 </p>
 
 <h2 align=center>A suite of utilities for adding responsive style props to your React components
