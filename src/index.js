@@ -1,7 +1,7 @@
 // export {css, jsx, withEmotionCache, CacheProvider, Global, keyframes, ClassNames} from '@emotion/core'
 export createElement from './createElement'
 export createStyleHook from './createStyleHook'
-export useStyles from './useStyles'
+export {useStyles, parseValue, splitValue} from './useStyles'
 export {
   ThemeContext,
   ThemeProvider,

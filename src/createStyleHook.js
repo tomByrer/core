@@ -1,4 +1,4 @@
-import useStyles from './useStyles'
+import {useStyles} from './useStyles'
 
 export default (name, styles) => {
   const hook = props => useStyles(name, styles, props)

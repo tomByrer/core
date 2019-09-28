@@ -13,6 +13,23 @@ export const getBreakpointOrder = fastMemoize(
 const splitWs = /(?!\[.*)\s+(?![^[]*?\])/g,
   replaceWs = /^\s+|\s+$|\s+(?=\s)/g
 
+export const splitValue = value => value.replace(replaceWs, '').split(splitWs)
+export const parseValue = (originalValue, theme) => {
+  let indexOfSplit = originalValue.indexOf(theme.breakpointsDelimiter),
+    value = originalValue,
+    breakpoint = null
+  // handles breakpoint splitting
+  if (indexOfSplit > -1) {
+    value = originalValue.substring(0, indexOfSplit)
+    breakpoint = originalValue.substring(indexOfSplit + 1)
+  }
+  // removes brackets from value's grouped props if there are any
+  if (value.indexOf('[') === 0 && value.indexOf(']') === value.length - 1)
+    value = value.substring(1, value.length - 1)
+  // empty values are treated as bools
+  return {value: value.length === 0 ? true : value, breakpoint}
+}
+
 const getCss = (name, fn, value, theme, props) => {
   if (typeof fn === 'object' && (fn.styles !== void 0 || Array.isArray(fn)))
     // boolean prop
@@ -72,31 +89,16 @@ const createStyles = (styles, theme, props) => {
         maybeAddStyles(css, getCss(propName, getter, propVal, theme, props))
       } else {
         // this parses values with media queries
-        let values = propVal.replace(replaceWs, '').split(splitWs),
+        let values = splitValue(propVal),
           j = 0
 
         for (; j < values.length; j++) {
           // <Box p='4@xl 5@xxl [x2 y3]@md' flex='@xxl' justify='center@xxl start@xl'>
-          let indexOfSplit = values[j].indexOf(theme.breakpointsDelimiter),
-            value = values[j],
-            breakpoint
-          // handles breakpoint splitting
-          if (indexOfSplit > -1) {
-            value = values[j].substring(0, indexOfSplit)
-            breakpoint = values[j].substring(indexOfSplit + 1)
-          }
-          // removes brackets from value's grouped props if there are any
-          if (
-            value.indexOf('[') === 0 &&
-            value.indexOf(']') === value.length - 1
-          )
-            value = value.substring(1, value.length - 1)
-          // empty values are treated as bools
-          value = value.length === 0 ? true : value
+          let {value, breakpoint} = parseValue(values[j], theme)
           let cssValue = getCss(propName, getter, value, theme, props)
 
           if (cssValue !== null && cssValue !== void 0) {
-            if (breakpoint === void 0 || breakpoint.length === 0)
+            if (breakpoint === null || breakpoint.length === 0)
               maybeAddStyles(css, cssValue)
             else {
               if (__DEV__) {
@@ -190,9 +192,7 @@ const pushCssProp = (nextProps, css) => {
   }
 }
 
-// useStyles('box', styles, props)
-// useStyles({name: 'box', styles}, props)
-const useStyles = (name, styles, props) => {
+export const useStyles = (name, styles, props) => {
   let theme = useTheme(),
     hookTheme = name === void 0 ? void 0 : theme[name],
     defaultProps = hookTheme && hookTheme.defaultProps,
@@ -247,5 +247,3 @@ const useStyles = (name, styles, props) => {
 
   return nextProps
 }
-
-export default useStyles

@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/style-hooks/core.svg?branch=master)](https://travis-ci.org/style-hooks/core)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://jaredlunde.mit-license.org/)
 
+---
+
 <p align=center>
   <br/>
   <img src='https://raw.githubusercontent.com/style-hooks/docs/master/assets/logo%402x.png' width='320'/>
