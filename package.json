@@ -79,7 +79,13 @@
     }
   },
   "lint-staged": {
-    "src/**/*.js": "eslint"
+    "src/**/*.js": [
+      "eslint",
+      "prettier --write"
+    ],
+    "**/*.{md,yml}": [
+      "prettier --write"
+    ]
   },
   "homepage": "https://style-hooks.jaredlunde.com",
   "repository": {
