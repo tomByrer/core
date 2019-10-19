@@ -1,13 +1,11 @@
 {
   "name": "@style-hooks/core",
   "version": "2.0.3",
-  "main": "dist/cjs/index.js",
-  "module": "dist/es/index.js",
+  "homepage": "https://style-hooks.jaredlunde.com",
+  "repository": "github:style-hooks/core",
+  "bugs": "https://github.com/style-hooks/core/issues",
   "author": "Jared Lunde",
   "license": "MIT",
-  "files": [
-    "/dist"
-  ],
   "description": "🧚‍♀️Turn your React function components into responsive components with style props using Style Hooks and Emotion",
   "keywords": [
     "css-in-js",
@@ -26,7 +24,42 @@
     "styled components",
     "emotion"
   ],
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "files": [
+    "/dist"
+  ],
   "sideEffects": false,
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:es",
+    "build:cjs": "babel src -d dist/cjs -x .js --ignore \"**/*.test.js\",\"**/test.js\" --delete-dir-on-start",
+    "build:es": "cross-env BABEL_ENV=es babel src -d dist/es -x .js  --ignore \"**/*.test.js\",\"**/test.js\" --delete-dir-on-start",
+    "format": "prettier --write \"**/*.{js,jsx,md,yml,json,babelrc,eslintrc,prettierrc}\"",
+    "lint": "eslint .",
+    "prepublishOnly": "npm run lint && npm run test && npm run build && npm run format",
+    "test": "jest",
+    "validate": "npm run lint && npm run test -- --coverage"
+  },
+  "peerDependencies": {
+    "@emotion/core": ">= 10.0.0",
+    "prop-types": ">= 15.6.0",
+    "react": ">= 16.8.0",
+    "react-dom": ">= 16.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": [
+      "eslint",
+      "prettier --write"
+    ],
+    "**/*.{md,yml,json,babelrc,eslintrc,prettierrc}": [
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
     "@emotion/core": "^10.0.14",
     "@essentials/benchmark": "^1.0.5",
@@ -53,46 +86,5 @@
     "is-mergeable-object": "^1.1.1",
     "json2mq": "^0.2.0",
     "trie-memoize": "^1.0.15"
-  },
-  "scripts": {
-    "build": "npm run build:cjs && npm run build:es",
-    "build:cjs": "babel src -d dist/cjs -x .js --ignore \"**/*.test.js\",\"**/test.js\" --delete-dir-on-start",
-    "build:es": "cross-env BABEL_ENV=es babel src -d dist/es -x .js  --ignore \"**/*.test.js\",\"**/test.js\" --delete-dir-on-start",
-    "format": "npm run format:cjs && npm run format:es && npm run format:src",
-    "format:cjs": "prettier --write \"dist/cjs/**/*.js\"",
-    "format:es": "prettier --write \"dist/es/**/*.js\"",
-    "format:src": "prettier --write \"src/**/*.js\"",
-    "lint": "eslint src",
-    "prepublishOnly": "npm run lint && npm run build && npm run format",
-    "test": "jest",
-    "validate": "npm run lint && npm run test -- --coverage && npm run format:src"
-  },
-  "peerDependencies": {
-    "@emotion/core": ">= 10.0.0",
-    "prop-types": ">= 15.6.0",
-    "react": ">= 16.8.0",
-    "react-dom": ">= 16.8.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.js": [
-      "eslint",
-      "prettier --write"
-    ],
-    "**/*.{md,yml}": [
-      "prettier --write"
-    ]
-  },
-  "homepage": "https://style-hooks.jaredlunde.com",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/style-hooks/core.git"
-  },
-  "bugs": {
-    "url": "https://github.com/style-hooks/core/issues"
   }
 }

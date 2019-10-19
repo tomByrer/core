@@ -31,7 +31,7 @@ import {createStyleHook, createElement, ThemeProvider} from '@style-hooks/core'
 const useBox = createStyleHook('box', {
   w: (value, theme, props) => css`
     width: ${value + theme.box.sizeUnit};
-  `
+  `,
 })
 // Accompanying component w/ style props using
 // your style hook
@@ -52,22 +52,20 @@ const App = () => (
       followed by 'breakpoint props',
       followed by the 'css' prop
     */}
-    <Box 
-      as='main' 
-      w='200:phone 300:tablet' 
-      css={
-        theme => css`
-          @media ${theme.breakpoints.phone} {
-            height: 200px;
-            background-color: hotpink;
-          }
-          
-          @media ${theme.breakpoints.tablet} {
-            height: 300px;
-            background-color: skyblue;
-          }
-        `
-      }
+    <Box
+      as="main"
+      w="200:phone 300:tablet"
+      css={theme => css`
+        @media ${theme.breakpoints.phone} {
+          height: 200px;
+          background-color: hotpink;
+        }
+
+        @media ${theme.breakpoints.tablet} {
+          height: 300px;
+          background-color: skyblue;
+        }
+      `}
     >
       Hello world from this {'<main>'}
     </Box>
@@ -75,16 +73,20 @@ const App = () => (
 )
 ```
 
-## Installation 
+## Installation
+
 #### `npm i @style-hooks/core @emotion/core`
+
 #### `yarn add @style-hooks/core @emotion/core`
 
 ## Playground
+
 Check out
 [`@style-hooks` on CodeSandbox](https://codesandbox.io/s/style-hooks-examples-t20yi)
 
 ## [API Documentation](https://style-hooks.jaredlunde.com)
-Complete documentation can be found 
+
+Complete documentation can be found
 [here](https://style-hooks.jaredlunde.com)
 
 - [**`Introduction`**](https://style-hooks.jaredlunde.com) Learn more
