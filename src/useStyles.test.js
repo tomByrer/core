@@ -1,5 +1,6 @@
 import {css} from '@emotion/core'
 import {renderHookWithTheme} from 'test-utils'
+import {useStyles} from './useStyles'
 import createStyleHook from './createStyleHook'
 
 const renderUseStyles = ({name, styles}, props, theme) =>
@@ -676,4 +677,33 @@ test('undefined breakpoint', () => {
       `A breakpoint for 'does-not-exist' was not found in: phone, tablet, desktop`
     )
   )
+})
+
+test('undefined name', () => {
+  let theme = {
+    box: {
+      defaultProps: {
+        display: 'block',
+      },
+    },
+  }
+
+  // block
+  let result = renderHookWithTheme(
+    () =>
+      useStyles(
+        {
+          display: {
+            block: css`
+              display: block;
+            `,
+          },
+        },
+        {display: 'block'}
+      ),
+    theme
+  ).result.current
+  expect(result.css.length).toBe(1)
+  expect(ws(result.css[0].styles)).toBe('display: block;')
+  expect(result.hasOwnProperty('display')).toBe(false)
 })

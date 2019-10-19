@@ -193,6 +193,12 @@ const pushCssProp = (nextProps, css) => {
 }
 
 export const useStyles = (name, styles, props) => {
+  if (typeof name === 'object' && name !== null) {
+    props = styles
+    styles = name
+    name = void 0
+  }
+
   let theme = useTheme(),
     hookTheme = name === void 0 ? void 0 : theme[name],
     defaultProps = hookTheme && hookTheme.defaultProps,
