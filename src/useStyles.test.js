@@ -1,6 +1,5 @@
 import {css} from '@emotion/core'
 import {renderHookWithTheme} from 'test-utils'
-import {useStyles} from './useStyles'
 import createStyleHook from './createStyleHook'
 
 const renderUseStyles = ({name, styles}, props, theme) =>
@@ -691,16 +690,13 @@ test('undefined name', () => {
   // block
   let result = renderHookWithTheme(
     () =>
-      useStyles(
-        {
-          display: {
-            block: css`
-              display: block;
-            `,
-          },
+      createStyleHook({
+        display: {
+          block: css`
+            display: block;
+          `,
         },
-        {display: 'block'}
-      ),
+      })({display: 'block'}),
     theme
   ).result.current
   expect(result.css.length).toBe(1)
