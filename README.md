@@ -1,14 +1,16 @@
+<p align=center>
+  <br/>
+  <img src='https://raw.githubusercontent.com/style-hooks/docs/master/assets/logo%402x.png' width='320'/>
+</p>
+
+---
+
 [![Bundlephobia](https://img.shields.io/bundlephobia/minzip/@style-hooks/core?style=for-the-badge)](https://bundlephobia.com/result?p=@style-hooks/core)
 [![Code coverage](https://img.shields.io/codecov/c/gh/style-hooks/core?style=for-the-badge)](https://codecov.io/gh/style-hooks/core)
 [![Build status](https://img.shields.io/travis/style-hooks/core?style=for-the-badge)](https://travis-ci.org/style-hooks/core)
 [![License](https://img.shields.io/github/license/style-hooks/core?style=for-the-badge)](https://jaredlunde.mit-license.org/)
 
 ---
-
-<p align=center>
-  <br/>
-  <img src='https://raw.githubusercontent.com/style-hooks/docs/master/assets/logo%402x.png' width='320'/>
-</p>
 
 <h2 align=center>A suite of utilities for adding responsive style props to your React components
 using <a href='http://emotion.sh'>Emotion</a></h2>
